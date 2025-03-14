@@ -1,129 +1,125 @@
 :root {
-  --primary: #3B82F6;
-  --bg-color: #f7faff;
+  --primary-color: #4A90E2;
+  --bg-color: #f0f5fb;
   --text-color: #333;
-  --card-bg: #fff;
   --shadow: rgba(0,0,0,0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: var(--bg-color);
+  background-color: #f0f5fb;
   color: var(--text-color);
-  padding: 20px;
-  margin: 0;
+  padding: 10px;
 }
 
 .container {
   max-width: 600px;
+  width: 100%;
   margin: 20px auto;
-  background: var(--card-bg);
-  padding: 25px;
+  background: #ffffff;
+  padding: 20px;
   border-radius: 12px;
   box-shadow: 0 4px 12px var(--shadow);
-  text-align: center;
 }
 
 h1 {
-  margin-bottom: 20px;
-  font-size: 26px;
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 24px;
 }
 
 .date-display {
-  font-size: 18px;
-  margin-bottom: 10px;
+  font-size: 16px;
+  text-align: center;
+  margin-bottom: 8px;
 }
 
 .countdown {
-  font-size: 15px;
-  color: #666;
-  margin-bottom: 20px;
+  font-size: 14px;
+  color: #888;
+  text-align: center;
+  margin-bottom: 15px;
 }
 
 .habit {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var(--card-bg);
-  padding: 14px 16px;
+  background: #ffffff;
+  padding: 12px 15px;
   margin-bottom: 10px;
   border-radius: 8px;
   box-shadow: 0 2px 6px var(--shadow);
 }
 
 .habit-name {
-  font-size: 17px;
-  font-weight: 500;
+  font-size: 16px;
 }
 
 .streak {
-  font-size: 15px;
+  font-size: 14px;
   color: #555;
 }
 
 .complete-btn {
   background-color: #4A90E2;
-  color: white;
+  color: #fff;
   border: none;
   border-radius: 6px;
-  padding: 8px 16px;
+  padding: 6px 10px;
   cursor: pointer;
-  transition: opacity 0.3s ease;
 }
 
 .complete-btn:disabled {
-  background-color: #bbb;
-  cursor: default;
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
-/* スマホ用に最適化 */
-@media (max-width: 600px) {
+/* ここからスマホ用の最適化 */
+@media (max-width: 768px) {
   body {
-    padding: 10px;
-    background-color: #f0f5fb;
+    padding: 5px;
   }
 
   .container {
     width: 100%;
-    margin: 0 auto;
     padding: 15px;
+    margin: 0 auto;
     box-shadow: none;
-    border-radius: 8px;
   }
 
   h1 {
-    font-size: 22px;
-    margin-bottom: 15px;
+    font-size: 20px;
   }
 
   .date-display {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .countdown {
-    font-size: 14px;
+    font-size: 13px;
     margin-bottom: 15px;
   }
 
   .habit {
     flex-direction: column;
-    align-items: flex-start;
-    padding: 10px 15px;
+    align-items: stretch;
+    padding: 10px;
   }
 
-  .habit-name {
-    font-size: 16px;
-    margin-bottom: 4px;
-  }
-
-  .streak {
-    margin-bottom: 8px;
-    font-size: 14px;
+  .habit-name, .streak {
+    text-align: left;
+    margin-bottom: 5px;
   }
 
   .complete-btn {
     width: 100%;
-    font-size: 15px;
-    padding: 8px;
+    padding: 8px 0;
   }
 }
