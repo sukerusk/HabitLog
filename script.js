@@ -1,13 +1,29 @@
 const habits = ["筋トレ", "ランニング", "読書", "英語学習", "映画鑑賞", "ヨガ"];
-const habitData = JSON.parse(localStorage.getItem('habitData')) || {};
+let habitData = JSON.parse(localStorage.getItem("habitData")) || {};
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
+  updateDate();
   renderHabits();
-  if ('Notification' in window && Notification.permission !== "granted") {
-    Notification.requestPermission();
-  }
+  setInterval(updateDate, 1000);
 });
 
+// 日付とカウントダウンを更新
+function updateDate() {
+  const now = new Date();
+  document.getElementById("today-date").textContent =
+    `${now.getFullYear()}年${now.getMonth() + 1}月${now.getDate()}日 (${["日", "月", "火", "水", "木", "金", "土"][now.getDay()]})`;
+
+  const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+  const diff = tomorrow - now;
+  const h = Math.floor(diff / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+
+  document.getElementById("countdown").textContent = 
+    `日付変更まで ${h}時間${m}分${s}秒`;
+}
+
+// 習慣の描画
 function renderHabits() {
   const container = document.getElementById('habits');
   container.innerHTML = "";
@@ -24,19 +40,19 @@ function renderHabits() {
     habitEl.className = 'habit';
 
     habitEl.innerHTML = `
-      <div>
-        <div class="habit-name">${habit}</div>
-        <div class="streak">🔥 ${habitData[habit].streak}日連続中</div>
-      </div>
-      <button class="complete-btn" ${doneToday ? "disabled" : ""}>${doneToday ? "完了済" : "達成"}</button>
+      <span class="habit-name">${habit}</span>
+      <span class="streak">🔥 ${habitData[habit].streak}日連続</span>
+      <button class="complete-btn" ${doneToday ? 'disabled' : ''}>
+        ${doneToday ? '完了済み' : '完了'}
+      </button>
     `;
 
-    habitEl.querySelector('.complete-btn').addEventListener('click', () => completeHabit(habit));
-
+    habitEl.querySelector(".complete-btn").onclick = () => completeHabit(habit);
     container.appendChild(habitEl);
   });
 }
 
+// 習慣を完了した時の処理
 function completeHabit(habit) {
   const today = new Date().toDateString();
   const yesterday = new Date(Date.now() - 86400000).toDateString();
@@ -44,7 +60,7 @@ function completeHabit(habit) {
   if (habitData[habit].lastDone === today) return;
 
   if (habitData[habit].lastDone === yesterday) {
-    habitData[habit].streak += 1;
+    habitData[habit].streak++;
   } else {
     habitData[habit].streak = 1;
   }
@@ -52,14 +68,5 @@ function completeHabit(habit) {
   habitData[habit].lastDone = today;
   localStorage.setItem('habitData', JSON.stringify(habitData));
 
-  notifyUser(habit, habitData[habit].streak);
   renderHabits();
-}
-
-function notifyUser(habit, streak) {
-  if ('Notification' in window && Notification.permission === "granted") {
-    new Notification('🎉 おめでとう！', {
-      body: `${habit}を達成しました！${streak}日連続中です。`,
-    });
-  }
 }
