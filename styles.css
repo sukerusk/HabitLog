@@ -1,125 +1,78 @@
-:root {
-  --primary-color: #4A90E2;
-  --bg-color: #f0f5fb;
-  --text-color: #333;
-  --shadow: rgba(0,0,0,0.1);
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
+/* 全体のレイアウト調整 */
 body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #f0f5fb;
-  color: var(--text-color);
-  padding: 10px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
 }
 
+/* カードのスタイル */
 .container {
-  max-width: 600px;
-  width: 100%;
-  margin: 20px auto;
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px var(--shadow);
+    width: 90%;  /* 画面幅に適応 */
+    max-width: 400px; /* 最大幅を指定 */
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* タイトルのフォント調整 */
 h1 {
-  text-align: center;
-  margin-bottom: 15px;
-  font-size: 24px;
-}
-
-.date-display {
-  font-size: 16px;
-  text-align: center;
-  margin-bottom: 8px;
-}
-
-.countdown {
-  font-size: 14px;
-  color: #888;
-  text-align: center;
-  margin-bottom: 15px;
-}
-
-.habit {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #ffffff;
-  padding: 12px 15px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px var(--shadow);
-}
-
-.habit-name {
-  font-size: 16px;
-}
-
-.streak {
-  font-size: 14px;
-  color: #555;
-}
-
-.complete-btn {
-  background-color: #4A90E2;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 6px 10px;
-  cursor: pointer;
-}
-
-.complete-btn:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-/* ここからスマホ用の最適化 */
-@media (max-width: 768px) {
-  body {
-    padding: 5px;
-  }
-
-  .container {
-    width: 100%;
-    padding: 15px;
-    margin: 0 auto;
-    box-shadow: none;
-  }
-
-  h1 {
     font-size: 20px;
-  }
+}
 
-  .date-display {
-    font-size: 14px;
-  }
-
-  .countdown {
-    font-size: 13px;
-    margin-bottom: 15px;
-  }
-
-  .habit {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 10px;
-  }
-
-  .habit-name, .streak {
-    text-align: left;
-    margin-bottom: 5px;
-  }
-
-  .complete-btn {
+/* テーブルの調整 */
+table {
     width: 100%;
-    padding: 8px 0;
-  }
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+/* セルのスタイル */
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    font-size: 14px; /* モバイル向けに調整 */
+}
+
+/* ボタンの調整 */
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* スマホでは全幅 */
+    margin-top: 5px;
+}
+
+/* ボタンのホバーエフェクト */
+button:hover {
+    background-color: #0056b3;
+}
+
+/* スマホ向けに最適化 */
+@media (max-width: 480px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 18px;
+    }
+
+    th, td {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    button {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
 }
